@@ -1,5 +1,35 @@
-<h1 class="text-center">Google Maps</h1>
+<div class="cointainer" *ngIf="!haveUserDetails">
+	<div class="container h-100">
+		<div class="d-flex justify-content-center h-100">
+			<div class="user_card">
+				<div class="d-flex justify-content-center">
+					<div class="brand_logo_container">
+						<img src="https://www.ripleys.com/wp-content/uploads/2021/12/UAE-Weather-Controlling-Drones.jpg" class="brand_logo" alt="Logo">
+					</div>
+				</div>
+				<div class="d-flex justify-content-center form_container">
+					<form [formGroup]="myUserPreferenceForm" (ngSubmit)="onSubmit()">
+						<div class="input-group mb-3">
+							<input name="" type="text" id="email" formControlName="place" class="form-control input_user" value="" placeholder="Enter Initial Location Of Drone">
+						</div>
+						<div class="input-group mb-2">
+							<input type="number" id="password" formControlName="noOfDrone" name="" class="form-control input_pass" value="" placeholder="Enter No of Drone Want to Stimulate">
+						</div>
+							<div class="d-flex justify-content-center mt-3 login_container">
+				 	<button type="submit" name="button" class="btn login_btn">Start</button>
+				   </div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 
+<!-- Drone Emulator Code start============================================================================ -->
+<div *ngIf="haveUserDetails">
+<h1 class="text-center">Simulate Drone on Google Maps</h1>
+<button type="button" class="btn btn-primary mr-2" (click)="configDrone()">Config No of Drone</button>
+<div class="googleMap">
 <agm-map
 	[latitude]="lat"
 	[longitude]="lng"
@@ -7,20 +37,40 @@
 	[disableDefaultUI]="false"
 	[zoomControl]="false"
 	(mapClick)="mapClicked($event)">
-
-  <agm-marker
-		*ngFor="let marker of markers; let i = index"
-		(markerClick)="markerClicked(marker, i, infoWindowRef)"
+<div *ngFor="let markers of totalMarker; let i = index">
+  <agm-marker class="fa fa-fighter-jet" 
+		*ngFor="let marker of markers; let j = index"
+		(markerClick)="markerClicked(marker,i, j, infoWindowRef)"
 		[latitude]="marker.lat"
 		[longitude]="marker.lng"
-		[label]="marker.label"
-		[markerDraggable]="marker.draggable"
-		(dragEnd)="markerDragEnd($event, i)">
-
+		[label]="marker.label" 
+		[iconUrl]="marker.iconUrl"  
+		[markerDraggable]="marker.draggable">
+		
     <agm-info-window #infoWindowRef>
 		<b>{{marker.lat}},  {{marker.lng}}</b>
+		     <p>Time : {{marker.time}}</p>
+			 <p *ngIf="j==1"> Timer: {{marker?.label?.text?.split(' ')[2]}}</p>
     </agm-info-window>
+  </agm-marker> 
+  <div *ngFor="let markerss of totalMarker">
+	<agm-polyline [editable]="false">
+    <agm-polyline-point
+      *ngFor="let data of markerss"
+      [latitude]="data.lat"
+      [longitude]="data.lng"
+    >
+    </agm-polyline-point>
+  </agm-polyline>
+  </div>
+  </div>
+</agm-map></div>
+<div class="buttondrone">
+<div class="childButton" *ngFor="let data of totalMarker; let id = index">
+	<button type="button" [disabled]="stimulatedStatus[id]" class="btn btn-success mr-2" (click)="SimulateDrone(id,'0')">Simulate Drone no {{id+1}}</button>
+	<button type="button" [disabled]="!stimulatedStatus[id]" class="btn btn-warning mr-2" (click)="PauseDrone(id,data[1]?.label?.text?.split(' ')[2])">Pause Drone no {{id+1}}</button>
+	<button type="button" [disabled]="!stimulatedStatus[id]" class="btn btn-primary mr-2" (click)="ResumeDrone(id,data[1]?.label?.text?.split(' ')[2])">Resume Drone no {{id+1}}</button>
 
-  </agm-marker>
+</div></div>
+</div>
 
-</agm-map>
