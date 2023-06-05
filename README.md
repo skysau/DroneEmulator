@@ -1,8 +1,4 @@
-# Integrate Google Maps in Angular 
 
-<p align="center"><img src="https://github.com/ultimateakash/angular-google-maps/blob/master/src/assets/angular-google-map.jpg"></p>
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.0.
 
 ## Development server
 
@@ -24,6 +20,4 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+<img width="941" alt="image" src="https://github.com/skysau/DroneEmulator/assets/66555115/2f6c63ca-6608-403d-b19a-7d3757dd6bc4">
