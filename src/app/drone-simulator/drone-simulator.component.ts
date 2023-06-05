@@ -94,7 +94,7 @@ export class DroneSimulatorComponent implements OnInit {
     let current=Number(curr)
     let dronePosition={lat: this.totalMarker[id][0].lat,
       lng: this.totalMarker[id][0].lng,
-      label: { color: 'blue', text:  `current Status ${current}` },
+      label: { color: 'blue', text:  `current Status ` },
       draggable: false,
       time:new Date().toLocaleTimeString(),
       iconUrl:'http://maps.google.com/mapfiles/ms/micons/plane.png'}
@@ -102,7 +102,7 @@ export class DroneSimulatorComponent implements OnInit {
       dronePosition = {
         lat: this.totalMarker[id][1].lat,
         lng: this.totalMarker[id][1].lng,
-        label: { color: 'blue', text:  `current Status ${current}` },
+        label: { color: 'blue', text:  `current Status` },
         draggable: false,
         time:new Date().toLocaleTimeString(),
         iconUrl:'http://maps.google.com/mapfiles/ms/micons/plane.png'
@@ -112,7 +112,7 @@ export class DroneSimulatorComponent implements OnInit {
   dronePosition = {
     lat: this.totalMarker[id][0].lat,
     lng: this.totalMarker[id][0].lng,
-    label: { color: 'blue', text:  `current Status ${current}` },
+    label: { color: 'blue', text:  `current Status` },
     draggable: false,
     time:new Date().toLocaleTimeString(),
     iconUrl:'http://maps.google.com/mapfiles/ms/micons/plane.png'
@@ -124,7 +124,7 @@ export class DroneSimulatorComponent implements OnInit {
     dronePosition.lat += 0.01;
     dronePosition.lng += 0.01;
     dronePosition.time=new Date().toLocaleTimeString(),
-    dronePosition.label.text = `current Status ${current}`;
+    dronePosition.label.text = `current Status `;
     this.totalMarker[id][1]=dronePosition;
     current++;
     //this.lat +=0.00000000000001;
