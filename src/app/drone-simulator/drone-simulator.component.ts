@@ -33,7 +33,7 @@ export class DroneSimulatorComponent implements OnInit {
   getAddressForAGM(address:any){
     const urlMap = `https://maps.googleapis.com/maps/api/geocode/json?address=
         ${address.replace(/\s/g, "")}
-      &key=AIzaSyC6nFyXAaMW9J4AE1uVyebaoHScDbMS3RY`;
+      &key=AIzaSyDsmRCwyjiDzB89HJXZbqT3pHvxXt-rE2M`;
       return  this.http.get(urlMap);
   }
   onSubmit(){
